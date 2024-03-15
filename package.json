@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/alekart/oss-117/issues"
   },
-  "homepage": "https://github.com/alekart/oss-117#readme"
+  "homepage": "https://github.com/alekart/oss-117#readme",
+  "devDependencies": {
+    "yargs": "^17.7.2"
+  }
 }
