@@ -1,0 +1,24 @@
+{
+  "name": "@alekart/oss-117",
+  "version": "1.0.0",
+  "description": "CLI for random OSS 117 quotes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alekart/oss-117.git"
+  },
+  "keywords": [
+    "oss",
+    "117",
+    "quotes"
+  ],
+  "author": "Aleskei Polechin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alekart/oss-117/issues"
+  },
+  "homepage": "https://github.com/alekart/oss-117#readme"
+}
