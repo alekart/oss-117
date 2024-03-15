@@ -1,0 +1,1 @@
+const argument = require('./prompt');
