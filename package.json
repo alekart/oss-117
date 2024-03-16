@@ -27,5 +27,8 @@
   "homepage": "https://github.com/alekart/oss-117#readme",
   "devDependencies": {
     "yargs": "^17.7.2"
+  },
+  "dependencies": {
+    "ora": "^8.0.1"
   }
 }
