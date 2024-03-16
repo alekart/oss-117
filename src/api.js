@@ -104,8 +104,9 @@ class OSSApi {
    * @private
    */
   findKeywordSentences(characterQuotes, keyword) {
+    const regex = new RegExp(`\\b${keyword}\\b`, 'gi')
     const found = characterQuotes.quotes.filter((quote) => {
-      return quote.includes(keyword);
+      return regex.test(quote);
     });
     return found.map((quote) => ({
       sentence: quote,
