@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 /**
  * @typedef {Object} Options
@@ -24,7 +24,7 @@ const path = require('path');
  * @property {Character} character
  */
 
-class OSSApi {
+export default class OSSApi {
   static url = 'https://api.oss117quotes.xyz/v1/';
   static endpoints = {
     random: `random/{number}`,
@@ -178,5 +178,3 @@ class OSSApi {
     return path.join(OSSApi.url, point);
   };
 }
-
-module.exports = OSSApi;

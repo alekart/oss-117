@@ -1,15 +1,12 @@
-const args = require('./prompt');
-const OSSApi = require('./api');
+import getOptions from './prompt.js';
+import OSSApi from './api.js';
+
 const ossApi = new OSSApi();
 
 /**
  * @type {Options}
  */
-const options = {
-  character: args.arguments.character,
-  number: args.arguments.number,
-  keyword: args.arguments.keyword,
-};
+const options = getOptions();
 
 /**
  * @param {Quote} quote
