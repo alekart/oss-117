@@ -32,6 +32,11 @@ class OSSApi {
     character: `character/{character}`,
     all: 'characters',
   };
+  static errors = {
+    wrongCharacter: 'Wrong character name. Please check the character list.',
+    noQuotes: 'No quotes found for the provided character.',
+    noKeyword: 'No quotes found for the provided keyword.',
+  };
 
   /**
    * Get OSS 117 quotes from the API based on the provided options.
@@ -42,13 +47,23 @@ class OSSApi {
     if (options?.keyword) {
       return this.getKeywordQuote(options);
     }
-    let url;
+    let req;
     if (options?.character) {
-      url = this.makeUrl('author', options);
+      req = this.request(this.makeUrl('author', options))
+        .then((data) => {
+          data = !Array.isArray(data) ? [data] : data;
+          if (!data.length) {
+            return Promise.reject(OSSApi.errors.noQuotes);
+          }
+          return data;
+        })
+        .catch((err) => {
+          return Promise.reject(err);
+        });
     } else {
-      url = this.makeUrl('random', options);
+      req = this.request(this.makeUrl('random', options));
     }
-    return this.request(url).then((data) => !Array.isArray(data) ? [data] : data);
+    return req.then((data) => !Array.isArray(data) ? [data] : data);
   }
 
   /**
@@ -66,7 +81,12 @@ class OSSApi {
    */
   getAllCharacterQuotes(character) {
     const url = this.makeUrl('character', {character});
-    return this.request(url).then((data) => data[0]);
+    return this.request(url).then((data) => {
+      if(data[0]) {
+        return data[0];
+      }
+      return undefined;
+    }).catch(() => undefined);
   }
 
   /**
@@ -74,25 +94,35 @@ class OSSApi {
    * @returns {Promise<Quote[]>}
    */
   getKeywordQuote(options) {
-    const errorMsg = 'No quotes found for the provided keyword.';
+    let req;
     if (options.character) {
-      let character;
-      return this.getAllCharacterQuotes(options.character)
+      req = this.getAllCharacterQuotes(options.character)
         .then((characterQuotes) => {
           if (!characterQuotes) {
-            console.log('Wrong character name. Please check the character list.');
-            return [];
+            return Promise.reject(OSSApi.errors.wrongCharacter);
           }
           return this.findKeywordSentences(characterQuotes, options.keyword);
         });
+    } else {
+      req = this.getAllQuotes()
+        .then(
+        (characters) => {
+          return characters
+            .map((character) => this.findKeywordSentences(character, options.keyword))
+            .flat();
+        },
+      );
     }
 
-    return this.getAllQuotes().then(
-      (characters) => {
-        const quotes = characters.map((character) => this.findKeywordSentences(character, options.keyword));
-        return quotes.flat().slice(0, options.number || 1);
+    return req.then((data) => {
+      if (!data.length) {
+        return Promise.reject(OSSApi.errors.noKeyword);
       }
-    )
+      if(options.number) {
+        return data.slice(0, options.number);
+      }
+      return [data[Math.floor(Math.random() * data.length)]];
+    });
   }
 
   /**
@@ -124,8 +154,13 @@ class OSSApi {
    */
   request(link, method = 'GET') {
     return fetch(link, {method})
-      .then((response) => response.json())
-      .then((data) => data);
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => data)
+      .catch(() => {
+        return [];
+      });
   }
 
   /**

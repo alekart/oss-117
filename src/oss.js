@@ -22,4 +22,6 @@ ossApi.getQuotes(options).then((quotes) => {
   quotes.forEach((quote) => {
     printQuote(quote);
   });
+}).catch((error) => {
+  console.error(error);
 });
