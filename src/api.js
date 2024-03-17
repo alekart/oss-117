@@ -5,6 +5,7 @@ import path from 'path';
  * @property {string} [character]
  * @property {number} [number]
  * @property {string} [keyword]
+ * @property {boolean} [list]
  */
 /**
  * @typedef {Object} Character

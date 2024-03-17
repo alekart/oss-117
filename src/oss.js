@@ -3,6 +3,7 @@ import getOptions from './prompt.js';
 import OSSApi from './api.js';
 import ora from 'ora';
 import chalk from 'chalk';
+import displayCharactersList from './display-characters-list.js';
 
 const ossApi = new OSSApi();
 
@@ -18,6 +19,10 @@ function printQuote(quote) {
   console.log(chalk.bold.yellow(quote.sentence));
   console.log(chalk.italic.grey(quote.character.name));
   console.log('\n');
+}
+
+if (options.list) {
+  displayCharactersList();
 }
 
 const spinner = ora('Watching the movie, hold on...').start();

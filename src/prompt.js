@@ -6,16 +6,24 @@ export default function getOptions() {
   const argv = yargs(process.argv.slice(2))
     .options({
       number: {
+        type: 'number',
         alias: 'n',
         describe: 'Number of random quotes to display',
       },
       character: {
+        type: 'string',
         alias: 'c',
         describe: 'Display quotes for specified character name (slug)',
       },
       keyword: {
+        type: 'string',
         alias: 'k',
         describe: 'Display quotes including provided keyword',
+      },
+      list: {
+        type: 'boolean',
+        alias: 'l',
+        describe: 'Display the list of available characters',
       },
     })
     .usage(`Usage: $0 [options]
@@ -32,5 +40,6 @@ export default function getOptions() {
     character: argv.character,
     number: argv.number,
     keyword: argv.keyword,
+    list: argv.list,
   };
 }
