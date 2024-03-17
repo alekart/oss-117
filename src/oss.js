@@ -23,10 +23,13 @@ function printQuote(quote) {
 const spinner = ora('Watching the movie, hold on...').start();
 ossApi.getQuotes(options).then((quotes) => {
   spinner.stop();
+  if (quotes.length && options.number && quotes.length < options.number) {
+    console.log(chalk.bgYellow(`I've only found ${quotes.length} quote(s) with provided options:\n`));
+  }
   quotes.forEach((quote) => {
     printQuote(quote);
   });
 }).catch((error) => {
   spinner.stop();
-  console.error(error);
+  console.log(chalk.red(error));
 });
