@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import getOptions from './prompt.js';
 import OSSApi from './api.js';
 import ora from 'ora';
