@@ -42,12 +42,16 @@ This is a simple CLI that displays random quotes from the movie OSS 117 using th
 By default, the CLI will display a random quote from the movie OSS 117, but you can also use the following arguments.
 The arguments can be combined to get a more specific results.
 
-### Arguments
+### Options
 
 - `--character` | `-c` - provide a character name to get a quote from a specific character
 - `--number` | `-n` - provide a number to get multiple quotes
 - `--keyword` | `-k` - provide a specific word to get a quote containing that word (case-insensitive).
+- 
+### Arguments
+- `--list` | `-l` - display list of available characters to use as --character option
 - `--help` | `-h` - display the help message (usage and options)
+- `--version` - display CLI version
 
 ### Example
 
