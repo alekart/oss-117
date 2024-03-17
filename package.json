@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/alekart/oss-117#readme",
   "devDependencies": {
+    "@types/yargs": "^17.0.32",
     "yargs": "^17.7.2"
   },
   "dependencies": {
