@@ -8,6 +8,23 @@ This is a simple CLI that displays random quotes from the movie OSS 117 using th
 
 ## Getting Started
 
+### Install from NPM repository
+
+- install
+  ```bash
+    npm install -g @alekart/oss-117
+  ```
+- link the binary
+  ```bash
+    npm link @alekart/oss-117
+  ```
+- Run the CLI
+  ```bash
+    oss
+  ```
+
+### Install from git repository
+
 1. Clone the repository
 
   ```bash
@@ -47,8 +64,9 @@ The arguments can be combined to get a more specific results.
 - `--character` | `-c` - provide a character name to get a quote from a specific character
 - `--number` | `-n` - provide a number to get multiple quotes
 - `--keyword` | `-k` - provide a specific word to get a quote containing that word (case-insensitive).
-- 
+
 ### Arguments
+
 - `--list` | `-l` - display list of available characters to use as --character option
 - `--help` | `-h` - display the help message (usage and options)
 - `--version` - display CLI version
@@ -58,6 +76,7 @@ The arguments can be combined to get a more specific results.
 ```bash
 oss --character hubert -n 3
 ```
+
 ```bash
 oss --keyword=blanquette --number=3
 ```

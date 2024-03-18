@@ -1,12 +1,10 @@
 {
   "name": "@alekart/oss-117",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "CLI for random OSS 117 quotes",
-  "main": "index.js",
+  "main": "src/oss.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "private": false,
   "bin": {
     "oss": "src/oss.js"
   },
@@ -29,11 +27,15 @@
   },
   "homepage": "https://github.com/alekart/oss-117#readme",
   "devDependencies": {
-    "@types/yargs": "^17.0.32",
-    "yargs": "^17.7.2"
+    "@types/yargs": "^17.0.32"
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "ora": "^8.0.1"
-  }
+    "ora": "^8.0.1",
+    "yargs": "^17.7.2"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ]
 }
